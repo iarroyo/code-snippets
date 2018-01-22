@@ -9,12 +9,12 @@ import org.springframework.stereotype.Component;
 @Aspect
 @Order(1)
 @Component
-public class PersonInterceptor {
+public class PersonInterceptorAfterTransactionCommit {
 
     @AfterReturning(pointcut = "execution(* es.daivan.springtransactions.service.PersonService.createRandomPerson())",
             returning = "person")
     public Person afterReturningOnCreatePerson(Person person) {
-        System.out.println("after returning -> " + person);
+        person.addClass(this.getClass());
         return person;
     }
 }

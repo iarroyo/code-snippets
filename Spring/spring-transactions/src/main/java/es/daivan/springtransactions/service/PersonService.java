@@ -29,7 +29,7 @@ public class PersonService {
 
     @TransactionalEventListener(phase = TransactionPhase.AFTER_COMMIT)
     public void onCreatePerson(Person person) {
-        System.out.println("after commit -> " + person);
+        person.addClass(this.getClass());
     }
 
 
